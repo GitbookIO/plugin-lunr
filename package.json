@@ -1,0 +1,31 @@
+{
+  "name": "gitbook-plugin-lunr",
+  "description": "Index book in a lunr index accessible from the search plugin",
+  "main": "index.js",
+  "version": "0.0.0",
+  "engines": {
+    "gitbook": ">=3.0.0-pre.0"
+  },
+  "dependencies": {
+    "lunr": "0.5.12",
+    "gitbook-plugin-search": "*"
+  },
+  "homepage": "https://github.com/GitbookIO/plugin-lunr",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GitbookIO/plugin-lunr.git"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/GitbookIO/plugin-lunr/issues"
+  },
+  "gitbook": {
+    "properties": {
+      "maxIndexSize": {
+        "type": "number",
+        "title": "Limit size for the index",
+        "default": 1000000
+      }
+    }
+  }
+}
