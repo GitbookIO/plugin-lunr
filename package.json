@@ -27,5 +27,8 @@
         "default": 1000000
       }
     }
+  },
+  "scripts": {
+    "prepublish": "cp node_modules/lunr/lunr.min.js ./assets/lunr.min.js"
   }
 }
