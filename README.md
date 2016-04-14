@@ -22,7 +22,6 @@ You can change this limit by settings the configuration `maxIndexSize`:
 
 ```js
 {
-    "plugins": ["-lunr"],
     "pluginsConfig": {
         "lunr": {
             "maxIndexSize": 200000
