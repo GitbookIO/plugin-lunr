@@ -25,7 +25,9 @@ module.exports = {
     hooks: {
         // Index each page
         'page': function(page) {
-            if (this.output.name != 'website' || !searchIndexEnabled) return page;
+            if (this.output.name != 'website' || !searchIndexEnabled || page.search === false) {
+                return page;
+            }
 
             var text, maxIndexSize;
             maxIndexSize = this.config.get('pluginsConfig.search.maxIndexSize') || this.config.get('search.maxIndexSize');

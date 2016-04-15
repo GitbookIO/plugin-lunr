@@ -29,3 +29,18 @@ You can change this limit by settings the configuration `maxIndexSize`:
     }
 }
 ```
+
+### Disable indexing of a page
+
+You can disable the indexing of a specific page by adding a YAML header to the page:
+
+```md
+---
+search: false
+---
+
+# My Page
+
+This page is not indexed in Lunr.
+```
+
