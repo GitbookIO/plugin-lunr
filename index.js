@@ -13,6 +13,7 @@ function getSearchIndex(context) {
             this.ref('url');
 
             this.field('title', { boost: 10 });
+            this.field('keywords', { boost: 15 });
             this.field('body');
 
             if (!ignoreSpecialCharacters) {
@@ -63,11 +64,17 @@ module.exports = {
                 return page;
             }
 
+            var keywords = [];
+            if (page.search) {
+                keywords = page.search.keywords || [];
+            }
+
             // Add to index
             var doc = {
                 url: this.output.toURL(page.path),
                 title: page.title,
                 summary: page.description,
+                keywords: keywords.join(' '),
                 body: text
             };
 

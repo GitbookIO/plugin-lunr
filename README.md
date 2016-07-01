@@ -30,6 +30,22 @@ You can change this limit by settings the configuration `maxIndexSize`:
 }
 ```
 
+### Adding keywords to a page
+
+You can specify explicit keywords for any page. When searching for these keywords, the page will rank higher in the results.
+
+```md
+---
+search:
+    keywords: ['keyword1', 'keyword2', 'etc.']
+
+---
+
+# My Page
+
+This page will rank better if we search for 'keyword1'.
+```
+
 ### Disabling indexing of a page
 
 You can disable the indexing of a specific page by adding a YAML header to the page:
