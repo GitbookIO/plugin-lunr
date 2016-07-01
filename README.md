@@ -30,7 +30,7 @@ You can change this limit by settings the configuration `maxIndexSize`:
 }
 ```
 
-### Disable indexing of a page
+### Disabling indexing of a page
 
 You can disable the indexing of a specific page by adding a YAML header to the page:
 
@@ -44,3 +44,17 @@ search: false
 This page is not indexed in Lunr.
 ```
 
+### Ignoring special characters
+
+By default, special characters will be taken into account, to allow special searches like "C++" or "#word". You can disable this if your text is essentially English prose with the `ignoreSpecialCharacters` option:
+
+
+```js
+{
+    "pluginsConfig": {
+        "lunr": {
+            "ignoreSpecialCharacters": true
+        }
+    }
+}
+```

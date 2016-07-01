@@ -22,11 +22,16 @@
   },
   "gitbook": {
     "properties": {
-      "maxIndexSize": {
-        "type": "number",
-        "title": "Limit size for the index",
-        "default": 1000000
-      }
+        "maxIndexSize": {
+            "type": "number",
+            "title": "Limit size for the index",
+            "default": 1000000
+        },
+        "ignoreSpecialCharacters": {
+            "type": "boolean",
+            "title": "Ignore special characters in words",
+            "default": false
+        }
     }
   },
   "scripts": {

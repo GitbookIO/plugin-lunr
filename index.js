@@ -1,14 +1,28 @@
 var lunr = require('lunr');
 var Entities = require('html-entities').AllHtmlEntities;
 
-// Create search index
-var searchIndex = lunr(function () {
-    this.ref('url');
 var Html = new Entities();
 
-    this.field('title', { boost: 10 });
-    this.field('body');
-});
+var searchIndex;
+// Called with the `this` context provided by Gitbook
+function getSearchIndex(context) {
+    if (!searchIndex) {
+        // Create search index
+        var ignoreSpecialCharacters = context.config.get('pluginsConfig.lunr.ignoreSpecialCharacters') || context.config.get('lunr.ignoreSpecialCharacters');
+        searchIndex = lunr(function () {
+            this.ref('url');
+
+            this.field('title', { boost: 10 });
+            this.field('body');
+
+            if (!ignoreSpecialCharacters) {
+                // Don't trim non words characters (to allow search such as "C++")
+                this.pipeline.remove(lunr.trimmer);
+            }
+        });
+    }
+    return searchIndex;
+}
 
 // Map of Lunr ref to document
 var documentsStore = {};
@@ -32,7 +46,7 @@ module.exports = {
             }
 
             var text, maxIndexSize;
-            maxIndexSize = this.config.get('pluginsConfig.search.maxIndexSize') || this.config.get('search.maxIndexSize');
+            maxIndexSize = this.config.get('pluginsConfig.lunr.maxIndexSize') || this.config.get('lunr.maxIndexSize');
 
             this.log.debug.ln('index page', page.path);
 
@@ -58,7 +72,7 @@ module.exports = {
             };
 
             documentsStore[doc.url] = doc;
-            searchIndex.add(doc);
+            getSearchIndex(this).add(doc);
 
             return page;
         },
@@ -69,7 +83,7 @@ module.exports = {
 
             this.log.debug.ln('write search index');
             return this.output.writeFile('search_index.json', JSON.stringify({
-                index: searchIndex,
+                index: getSearchIndex(this),
                 store: documentsStore
             }));
         }
