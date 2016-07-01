@@ -7,8 +7,9 @@
     "gitbook": ">=3.0.0-pre.0"
   },
   "dependencies": {
-    "lunr": "0.5.12",
-    "gitbook-plugin-search": "*"
+    "gitbook-plugin-search": "*",
+    "html-entities": "1.2.0",
+    "lunr": "0.5.12"
   },
   "homepage": "https://github.com/GitbookIO/plugin-lunr",
   "repository": {

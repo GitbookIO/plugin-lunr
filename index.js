@@ -1,8 +1,10 @@
 var lunr = require('lunr');
+var Entities = require('html-entities').AllHtmlEntities;
 
 // Create search index
 var searchIndex = lunr(function () {
     this.ref('url');
+var Html = new Entities();
 
     this.field('title', { boost: 10 });
     this.field('body');
@@ -34,8 +36,11 @@ module.exports = {
 
             this.log.debug.ln('index page', page.path);
 
-            // Transform as TEXT
-            text = page.content.replace(/(<([^>]+)>)/ig, '');
+            text = page.content;
+            // Decode HTML
+            text = Html.decode(text);
+            // Strip HTML tags
+            text = text.replace(/(<([^>]+)>)/ig, '');
 
             indexSize = indexSize + text.length;
             if (indexSize > maxIndexSize) {
