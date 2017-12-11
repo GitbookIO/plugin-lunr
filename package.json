@@ -2,14 +2,14 @@
   "name": "gitbook-plugin-lunr",
   "description": "Index book in a lunr index accessible from the search plugin",
   "main": "index.js",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "engines": {
     "gitbook": ">=3.0.0-pre.0"
   },
   "dependencies": {
     "gitbook-plugin-search": "*",
     "html-entities": "1.2.0",
-    "lunr": "0.5.12"
+    "lunr": "2.1.5"
   },
   "homepage": "https://github.com/GitbookIO/plugin-lunr",
   "repository": {
@@ -22,19 +22,17 @@
   },
   "gitbook": {
     "properties": {
-        "maxIndexSize": {
-            "type": "number",
-            "title": "Limit size for the index",
-            "default": 1000000
-        },
-        "ignoreSpecialCharacters": {
-            "type": "boolean",
-            "title": "Ignore special characters in words",
-            "default": false
-        }
+      "maxIndexSize": {
+        "type": "number",
+        "title": "Limit size for the index",
+        "default": 1000000
+      },
+      "ignoreSpecialCharacters": {
+        "type": "boolean",
+        "title": "Ignore special characters in words",
+        "default": false
+      }
     }
   },
-  "scripts": {
-    "prepublish": "cp node_modules/lunr/lunr.min.js ./assets/lunr.min.js"
-  }
+  "scripts": {}
 }

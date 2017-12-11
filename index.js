@@ -2,7 +2,7 @@ var lunr = require('lunr');
 var Entities = require('html-entities').AllHtmlEntities;
 
 var Html = new Entities();
-
+var docs = [];
 var searchIndex;
 // Called with the `this` context provided by Gitbook
 function getSearchIndex(context) {
@@ -20,6 +20,7 @@ function getSearchIndex(context) {
                 // Don't trim non words characters (to allow search such as "C++")
                 this.pipeline.remove(lunr.trimmer);
             }
+            docs.forEach((doc)=>this.add(doc));
         });
     }
     return searchIndex;
@@ -79,8 +80,8 @@ module.exports = {
             };
 
             documentsStore[doc.url] = doc;
-            getSearchIndex(this).add(doc);
-
+            docs.push(doc);
+            
             return page;
         },
 
