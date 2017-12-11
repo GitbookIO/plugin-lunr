@@ -26,5 +26,3 @@ node_modules
 
 # vim swapfile
 *.swp
-
-assets/lunr.min.js
