@@ -10,7 +10,7 @@ In order to use this plugin, need to disable `lunr` plugins and add `elasticsear
 ```
 "plugins": [
     "-lunr",
-    "docSearch"
+    "elasticsearch"
   ]
 ```
 add the following plugin configurations in book.json
