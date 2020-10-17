@@ -19,6 +19,10 @@ require([
     if (this.config.apiKey) {
       headers["Authorization"] = "ApiKey " + this.config.apiKey
     }
+    var maxResults = 20
+    if (this.config.maxResults) {
+      maxResults = this.config.maxResults
+    }
 
     return $.Deferred(defer => {
       fetch(this.config.host + "/" + this.config.index + "/_search", {
@@ -37,7 +41,8 @@ require([
             "fields": {
               "body": {}
             }
-          }
+          },
+          "size": maxResults
         })
       })
       .then(response => {

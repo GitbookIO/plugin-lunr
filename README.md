@@ -21,7 +21,8 @@ add the following plugin configurations in book.json
      "elasticsearch": {
        "host" : "http://your-elasticsearch:9200",
        "index" : "your-index",
-       "apiKey" : "your-apikey"
+       "apiKey" : "your-apikey",
+       "maxResult" : 30,
      }
    }
 }
