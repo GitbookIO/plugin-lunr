@@ -54,13 +54,17 @@ require([
         }
       })
     })
+    var headers = {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+    if (this.config.apiKey) {
+      headers["Authorization"] = "ApiKey " + this.config.apiKey
+    }
 
     return $.Deferred(defer => {
       fetch(this.config.host + "/" + this.config.index + "/_search", {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
+        headers: headers,
         mode: "cors",
         method: "POST",
         body: JSON.stringify({
