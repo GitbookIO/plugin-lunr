@@ -1,33 +1,37 @@
-# lunr
+# honkit-plugin-elasticsearch
 
 This plugin provides a backend for the [search](https://github.com/GitbookIO/plugin-search) plugin.
 
-This plugin is a default plugin.
+## Usage
 
-### Disable this plugin
+Gitbook comes with default search option.
+In order to use this plugin, need to disable `lunr` plugins and add `elasticsearch` as bellow:
 
-This is a default plugin and it can be disabled using a `book.json` configuration:
+```
+"plugins": [
+    "-lunr",
+    "docSearch"
+  ]
+```
+add the following plugin configurations in book.json
 
-```js
+```
 {
-    "plugins": ["-lunr"]
+   "pluginsConfig": {
+     "elasticsearch": {
+       "host" : "http://your-elasticsearch:9200",
+       "index" : "your-index",
+       "apiKey" : "your-apikey"
+     }
+   }
 }
 ```
 
-### Limitations
+Building your gitbook will generate a search index file in `_book` directory.
+Insert the index file into your elasticsearch.
 
-Lunr can't index a huge book, by default the index size is limited at ~100ko.
-
-You can change this limit by settings the configuration `maxIndexSize`:
-
-```js
-{
-    "pluginsConfig": {
-        "lunr": {
-            "maxIndexSize": 200000
-        }
-    }
-}
+```
+curl -XPOST "http://your-elasticsearch:9200/your-index/_bulk" -H 'Content-Type: application/json' --data-binary @_book/search_index.json
 ```
 
 ### Adding keywords to a page
@@ -57,20 +61,6 @@ search: false
 
 # My Page
 
-This page is not indexed in Lunr.
+This page is not indexed in Elasticsearch.
 ```
 
-### Ignoring special characters
-
-By default, special characters will be taken into account, to allow special searches like "C++" or "#word". You can disable this if your text is essentially English prose with the `ignoreSpecialCharacters` option:
-
-
-```js
-{
-    "pluginsConfig": {
-        "lunr": {
-            "ignoreSpecialCharacters": true
-        }
-    }
-}
-```

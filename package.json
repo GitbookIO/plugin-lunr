@@ -1,40 +1,22 @@
 {
-  "name": "gitbook-plugin-lunr",
-  "description": "Index book in a lunr index accessible from the search plugin",
+  "name": "honkit-plugin-elasticsearch",
+  "description": "GitBook search plugin for Elasticsearch",
   "main": "index.js",
-  "version": "1.2.0",
+  "version": "0.1.0",
   "engines": {
-    "gitbook": ">=3.0.0-pre.0"
+    "gitbook": "*"
   },
   "dependencies": {
     "gitbook-plugin-search": "*",
-    "html-entities": "1.2.0",
-    "lunr": "0.5.12"
+    "html-entities": "1.3.1"
   },
-  "homepage": "https://github.com/GitbookIO/plugin-lunr",
+  "homepage": "https://github.com/zoetrope/honkit-plugin-elasticsearch",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GitbookIO/plugin-lunr.git"
+    "url": "https://github.com/zoetrope/honkit-plugin-elasticsearch.git"
   },
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/GitbookIO/plugin-lunr/issues"
-  },
-  "gitbook": {
-    "properties": {
-        "maxIndexSize": {
-            "type": "number",
-            "title": "Limit size for the index",
-            "default": 1000000
-        },
-        "ignoreSpecialCharacters": {
-            "type": "boolean",
-            "title": "Ignore special characters in words",
-            "default": false
-        }
-    }
-  },
-  "scripts": {
-    "prepublish": "cp node_modules/lunr/lunr.min.js ./assets/lunr.min.js"
+    "url": "https://github.com/zoetrope/honkit-plugin-elasticsearch/issues"
   }
 }
