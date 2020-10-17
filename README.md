@@ -22,7 +22,7 @@ add the following plugin configurations in book.json
        "host" : "http://your-elasticsearch:9200",
        "index" : "your-index",
        "apiKey" : "your-apikey",
-       "maxResult" : 30,
+       "maxResults" : 30,
      }
    }
 }
