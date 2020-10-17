@@ -13,10 +13,11 @@
   "homepage": "https://github.com/zoetrope/honkit-plugin-elasticsearch",
   "repository": {
     "type": "git",
-    "url": "https://github.com/zoetrope/honkit-plugin-elasticsearch.git"
+    "url": "git+https://github.com/zoetrope/honkit-plugin-elasticsearch.git"
   },
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/zoetrope/honkit-plugin-elasticsearch/issues"
-  }
+  },
+  "author": "Akihiro Ikezoe <a.ikezoe@gmail.com>"
 }
