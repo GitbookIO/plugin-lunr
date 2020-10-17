@@ -12,48 +12,6 @@ require([
   };
 
   ElasticsearchEngine.prototype.search = function (q, offset, length) {
-    var query = {
-      "bool": {
-        "should": [
-          {
-            "bool": {
-              "must": []
-            }
-          },
-          {
-            "bool": {
-              "must": []
-            }
-          },
-          {
-            "bool": {
-              "must": []
-            }
-          }
-        ]
-      }
-    }
-    q.split(' ').forEach(word => {
-      word = word.trim()
-      if (word === "") {
-        return
-      }
-      query.bool.should[0].bool.must.push({
-        "term": {
-          "body": word,
-        }
-      })
-      query.bool.should[1].bool.must.push({
-        "term": {
-          "keywords": word,
-        }
-      })
-      query.bool.should[2].bool.must.push({
-        "term": {
-          "title": word,
-        }
-      })
-    })
     var headers = {
       Accept: "application/json",
       "Content-Type": "application/json"
@@ -68,7 +26,13 @@ require([
         mode: "cors",
         method: "POST",
         body: JSON.stringify({
-          "query": query,
+          "query": {
+            "multi_match": {
+              "fields": ["title", "keywords", "body"],
+              "query": q,
+              "operator": "and"
+            },
+          },
           "highlight": {
             "fields": {
               "body": {}
