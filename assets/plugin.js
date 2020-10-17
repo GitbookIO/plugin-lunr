@@ -78,10 +78,11 @@ require([
       })
       .then(response => {
         if (!response.ok) {
-          console.log("error")
-          return
+          console.error("Request failed: [" + response.status + "] " + response.statusText)
+          defer.reject("[" + response.status + "] " + response.statusText)
+          return Promise.reject("[" + response.status + "] " + response.statusText);
         }
-        return response;
+        return Promise.resolve(response);
       })
       .then(response => response.json())
       .then(data => {
